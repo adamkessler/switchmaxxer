@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/config-schema.json",
+
+  // Unit tests are discovered dynamically by scripts/run-unit-tests.js after
+  // TypeScript compiles them to dist/**/*.test.js. Fallow needs the source test
+  // files declared as entry points so it does not mark the test suite dead.
+  "entry": [
+    "src/**/*.test.ts",
+
+    // Loaded through node:worker_threads using a computed path, not a static import.
+    "src/subsystems/observability/gateway-writer-worker.ts"
+  ],
+
+  // node:sqlite is a Node 22+ builtin, not an npm package dependency.
+  "ignoreDependencies": [
+    "node:sqlite"
+  ]
+}

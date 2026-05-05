@@ -1,0 +1,98 @@
+{
+  "name": "switchmaxxer",
+  "version": "0.0.5",
+  "private": true,
+  "description": "Lightweight TypeScript LLM routing proxy for local-first AI applications and services.",
+  "keywords": [
+    "llm",
+    "ai",
+    "gateway",
+    "proxy",
+    "mcp",
+    "openai",
+    "anthropic",
+    "routing",
+    "local-first"
+  ],
+  "author": "Adam Kessler",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamkessler/switchmaxxer.git"
+  },
+  "homepage": "https://github.com/adamkessler/switchmaxxer#readme",
+  "bin": {
+    "switchmaxxer": "./switchmaxxer",
+    "smx": "./smx"
+  },
+  "files": [
+    "dist/**/*.js",
+    "!dist/**/*.test.js",
+    "!dist/**/*.test-support.js",
+    "!dist/**/test-helpers.js",
+    "!dist/**/test-resource-helpers.js",
+    "!dist/**/perf-gateway.js",
+    "switchmaxxer",
+    "smx",
+    "config-examples/config.example.json",
+    "config-examples/catalog.example.json",
+    "config-examples/secrets.example.json",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs/docs-index.md",
+    "docs/how-to",
+    "docs/subsystems/config/config-reference.md",
+    "docs/contracts/error-codes-reference.md",
+    "docs/swe/tech-spec-for-threat-models.md",
+    "docs/subsystems/cli/tech-spec-for-cli-surface.md",
+    "docs/subsystems/mcp/how-to-launch-switchmaxxer-mcp.md",
+    "docs/subsystems/observability/switchmaxxer-logging-reference.md"
+  ],
+  "bugs": {
+    "url": "https://github.com/adamkessler/switchmaxxer/issues"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json && node scripts/check-built-script-targets.js",
+    "prepack": "npm run build",
+    "check:pack": "npm pack --dry-run --json",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "preversion": "npm run lint && npm run test:unit",
+    "version": "echo 'Version updated. Review CHANGELOG.md before publishing or pushing tags.'",
+    "postversion": "echo 'Release commit and tag created. Push with: git push && git push --tags'",
+    "start": "node --enable-source-maps dist/index.js",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:all": "npm run test:unit && npm run test:integration:all",
+    "test:unit": "npm run build && npm run check:contracts && node scripts/run-unit-tests.js",
+    "test:unit:risky-suites": "npm run build && node scripts/repeat-risky-unit-suites.js",
+    "test:integration": "node scripts/run-integration-tests.js smoke",
+    "test:integration:self-contained": "node scripts/run-integration-tests.js self-contained",
+    "test:integration:env": "node scripts/run-integration-tests.js env",
+    "test:integration:all": "node scripts/run-integration-tests.js all",
+    "test:observability": "npm run build && node --enable-source-maps --test --test-reporter=spec dist/subsystems/observability/observability.test.js",
+    "test:routes": "ts-node src/index.ts test",
+    "check:contracts": "node scripts/validate-cli-envelope.js --self-test && node scripts/check-error-code-coverage.js --strict && node scripts/check-secret-reveal-allowlist.js",
+    "check:boundaries": "node scripts/check-import-boundaries.js",
+    "check:docs": "node scripts/check-doc-links.js",
+    "docs:error-codes": "node scripts/gen-error-codes-doc.js",
+    "check:error-codes": "node scripts/check-error-code-coverage.js",
+    "perf:gateway": "npm run build && node --enable-source-maps dist/subsystems/gateway/perf-gateway.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
+    "ajv": "^8.18.0",
+    "eslint": "^10.2.1",
+    "globals": "^17.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.0"
+  }
+}

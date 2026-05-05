@@ -1,0 +1,39 @@
+name: Feature Request
+description: Propose an improvement to Switchmaxxer
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the operator or integration problem first.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem To Solve
+      description: What user or operator problem are you trying to solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Behavior
+      description: What should Switchmaxxer do instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches did you consider?
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Compatibility And Risk
+      description: Note any config, CLI, MCP, security, or reliability tradeoffs
+
