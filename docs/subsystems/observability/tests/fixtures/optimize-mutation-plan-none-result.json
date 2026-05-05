@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "plan": {
+    "kind": "none",
+    "reason": "No config change is needed."
+  },
+  "warnings": [
+    "Route already matches the selected provider target."
+  ]
+}

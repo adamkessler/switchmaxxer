@@ -1,0 +1,56 @@
+# Local operator state and secrets.
+config.json
+config.*.json
+!config-examples/config.example.json
+catalog.json
+catalog.*.json
+!config-examples/catalog.example.json
+secrets.json
+secrets.*.json
+!config-examples/secrets.example.json
+.switchmaxxer/
+.env
+.env.*
+
+# Repository and agent workspace metadata.
+.git/
+.github/
+.gitignore
+.npmignore
+.claude
+.claude/
+.codex
+.codex/
+AGENTS.md
+
+# Development sources, tests, and tooling.
+src/
+tests/
+scripts/
+test-logs/
+coverage/
+tsconfig.json
+eslint.config.mjs
+*.tsbuildinfo
+
+# Compiled test and benchmark artifacts.
+dist/**/*.test.js
+dist/**/*.test.js.map
+dist/**/*.test-support.js
+dist/**/*.test-support.js.map
+dist/**/test-helpers.js
+dist/**/test-helpers.js.map
+dist/**/test-resource-helpers.js
+dist/**/test-resource-helpers.js.map
+dist/**/perf-gateway.js
+dist/**/perf-gateway.js.map
+dist/**/*.js.map
+
+# Internal readiness and prompt working docs.
+docs/repo-readiness/
+docs/prompts/
+
+# Logs and OS/editor noise.
+*.log
+*.bak
+.DS_Store

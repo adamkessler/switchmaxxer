@@ -1,0 +1,26 @@
+#!/bin/bash
+set -euo pipefail
+
+SOURCE_PATH="${BASH_SOURCE[0]}"
+while [[ -L "$SOURCE_PATH" ]]; do
+  SOURCE_DIR="$(cd "$(dirname "$SOURCE_PATH")" && pwd)"
+  SOURCE_PATH="$(readlink "$SOURCE_PATH")"
+  [[ "$SOURCE_PATH" != /* ]] && SOURCE_PATH="$SOURCE_DIR/$SOURCE_PATH"
+done
+SCRIPT_DIR="$(cd "$(dirname "$SOURCE_PATH")" && pwd)"
+DIST_ENTRY="$SCRIPT_DIR/dist/index.js"
+BUILD_HINT="Run 'npm run build' from $SCRIPT_DIR and try again."
+
+if [[ ! -f "$DIST_ENTRY" ]]; then
+  echo "Switchmaxxer build output is missing at '$DIST_ENTRY'." >&2
+  echo "$BUILD_HINT" >&2
+  exit 1
+fi
+
+if [[ -d "$SCRIPT_DIR/src" ]] && find "$SCRIPT_DIR/src" -type f -name '*.ts' -newer "$DIST_ENTRY" -print -quit | grep -q .; then
+  echo "Switchmaxxer build output looks stale: source files are newer than '$DIST_ENTRY'." >&2
+  echo "$BUILD_HINT" >&2
+  exit 1
+fi
+
+exec node "$DIST_ENTRY" "$@"

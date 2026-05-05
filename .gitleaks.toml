@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Test fixtures contain intentional fake secrets used to verify redaction and auth logic"
+paths = [
+  '''.*\.test\.ts$''',
+  '''.*\.test\.tsx$''',
+]

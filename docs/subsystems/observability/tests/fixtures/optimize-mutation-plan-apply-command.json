@@ -1,0 +1,18 @@
+{
+  "command": "optimizeMutation.planApply",
+  "runId": "opt-ipc-plan",
+  "targetRouteId": "route-ipc-plan",
+  "readModel": {
+    "sourcePath": "/tmp/config.json",
+    "routes": {}
+  },
+  "sourceSurface": "cli",
+  "createdBy": "switchmaxxer IPC plan fixture",
+  "actorKind": "operator",
+  "actorId": null,
+  "sessionId": null,
+  "dryRun": false,
+  "metadata": {
+    "phase": "ipc-plan-fixture"
+  }
+}

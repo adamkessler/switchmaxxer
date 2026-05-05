@@ -1,0 +1,42 @@
+{
+  "config_version": 1,
+  "bind_host": "127.0.0.1",
+  "port": 4080,
+  "log_level": "info",
+  "max_connections": 200,
+  "timeout_ms": 15000,
+  "stream_idle_timeout_ms": 120000,
+  "stream_max_lifetime_ms": 600000,
+  "stream_min_bytes_per_second": 16,
+  "stream_rate_window_ms": 30000,
+  "stream_max_event_bytes": 1048576,
+  "stream_max_total_bytes": 67108864,
+  "max_concurrent_streams_per_ip": 8,
+  "max_concurrent_json_parses": 4,
+  "max_buffered_upstream_response_bytes": 16777216,
+  "shutdown_timeout_ms": 30000,
+  "max_payload_size": 4000000,
+  "systemd_unit": "switchmaxxer.service",
+  "rate_limit": {
+    "requests": 50,
+    "window": "1s"
+  },
+  "inbound_api_key_env": "SWITCHMAXXER_INBOUND_API_KEY",
+  "allow_unauthenticated_gateway": false,
+  "one_trusted_operator_boundary": false,
+  "allow_unauthenticated_health": false,
+  "allow_remote_bind": false,
+  "allow_wildcard_bind": false,
+  "observability": {
+    "retention": {
+      "older_than": "14d"
+    }
+  },
+  "mcp": {
+    "capabilities": ["read"]
+  },
+  "benchmark": {
+    "default_max_tokens": 32,
+    "default_anthropic_version": "2023-06-01"
+  }
+}
